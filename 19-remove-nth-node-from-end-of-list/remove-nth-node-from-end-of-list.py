@@ -9,26 +9,17 @@ class Solution:
         dummy = ListNode()
         dummy.next = head
 
-        # first find the lenght
-        length = 0
-        curr = head
-        while curr:
-            length += 1
-            curr = curr.next
+        left, right = head, head
+        for i in range(n):
+            right = right.next
         
-        if length == 1:
-            return None
-        
-        index = length - n
-        # start from the first element and find the desired node
-        curr = head
         prev = dummy
-        for i in range(index):
-            prev = curr
-            curr = curr.next
+        while right:
+            prev = left
+            left = left.next
+            right = right.next
         
-        prev.next = curr.next
+        prev.next = left.next   
 
         return dummy.next
-
         
